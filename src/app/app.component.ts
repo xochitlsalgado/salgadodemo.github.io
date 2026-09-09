@@ -15,9 +15,9 @@ import { CertificatesComponent } from './certificates/certificates.component';
     WorkExperienceComponent,
     SkillsComponent,
     EducationComponent,
-  CertificatesComponent,
    LanguagesComponent, 
-  InterestsComponent
+  InterestsComponent,
+ CertificatesComponent
   ],
   templateUrl: './app.component.html'
 })
