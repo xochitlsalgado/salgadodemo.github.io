@@ -1,32 +1,14 @@
 <div class="card my-3 p-3 shadow-sm rounded-3">
   <h4 class="fw-bold mb-3">Certificates</h4>
 
-  <div *ngIf="certificates && certificates.length > 0; else noCert">
-    <div *ngFor="let cert of certificates" class="mb-3 pb-2 border-bottom">
-      
-      <!-- Imprime cualquier campo que tenga el nombre/título -->
-      <h6 class="fw-bold mb-1">
-        {{ cert.title || cert.nombre || cert.name || cert.titulo || 'Certificado sin título' }}
-      </h6>
-
-      <!-- Imprime la institución -->
-      <p class="text-muted small mb-2" *ngIf="cert.institution || cert.institucion">
-        {{ cert.institution || cert.institucion }}
-      </p>
-
-      <!-- Botón al enlace -->
-      <a *ngIf="cert.url || cert.link || cert.enlace" 
-         [href]="cert.url || cert.link || cert.enlace" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="btn btn-outline-primary btn-sm rounded-pill w-100">
-        Ver Certificado
-      </a>
-
-    </div>
+  <div *ngFor="let cert of certificates" class="mb-3 pb-2 border-bottom">
+    <h6 class="fw-bold mb-1">{{ cert.title }}</h6>
+    <p class="text-muted small mb-2">{{ cert.institution }}</p>
+    <a [href]="cert.url" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="btn btn-outline-primary btn-sm rounded-pill w-100">
+      Ver Certificado
+    </a>
   </div>
-
-  <ng-template #noCert>
-    <p class="text-muted small mb-0">No hay certificados registrados.</p>
-  </ng-template>
 </div>

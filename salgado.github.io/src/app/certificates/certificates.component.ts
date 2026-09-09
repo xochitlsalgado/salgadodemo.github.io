@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CertificatesService, Certificate } from '../../services/certificates.service';
 
 @Component({
   selector: 'app-certificates',
@@ -10,13 +9,19 @@ import { CertificatesService, Certificate } from '../../services/certificates.se
   styleUrls: []
 })
 export class CertificatesComponent implements OnInit {
-  certificates: Certificate[] = [];
+  // Lista fija con los datos exactos para garantizar el renderizado
+  certificates = [
+    {
+      title: 'Pandas',
+      institution: 'Kaggle',
+      url: 'https://www.kaggle.com/learn/certification/xochitlsalgado/pandas'
+    },
+    {
+      title: 'Python',
+      institution: 'Kaggle',
+      url: 'https://www.kaggle.com'
+    }
+  ];
 
-  constructor(private certService: CertificatesService) {}
-
-  ngOnInit(): void {
-    this.certService.getCertificates().subscribe((data: Certificate[]) => {
-      this.certificates = data;
-    });
-  }
+  ngOnInit(): void {}
 }
