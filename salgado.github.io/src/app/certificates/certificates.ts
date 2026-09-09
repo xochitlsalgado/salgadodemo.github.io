@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
-import { CertificatesService } from '../services/certificates.service';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CertificatesService, Certificate } from '../services/certificates.service';
 
 @Component({
   selector: 'app-certificates',
-  templateUrl: './certificates.html', // Nombre exacto de tu archivo
-  styleUrls: ['./certificates.scss']   // Nombre exacto de tu archivo
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './certificates.html',
+  styleUrls: ['./certificates.css']
 })
-export class CertificatesComponent {
-  // Inyectamos el servicio para traer los datos de Firebase
-  constructor(public certificatesService: CertificatesService) { }
+export class CertificatesComponent implements OnInit {
+  certificates: Certificate[] = [];
+
+  constructor(private certService: CertificatesService) {}
+
+  ngOnInit(): void {
+    this.certService.getCertificates().subscribe({
+      next: (data) => (this.certificates = data),
+      error: (err) => console.error('Error al cargar certificados:', err)
+    });
+  }
 }

@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
-import { HeaderService } from '../services/header.service'; // Asegúrate que esta ruta sea correcta
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HeaderService } from '../services/header.service';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  // El constructor DEBE ir dentro de las llaves de la clase
-  constructor(public headerService: HeaderService) { }
+export class HeaderComponent implements OnInit {
+  headerData: any;
+
+  constructor(public headerService: HeaderService) {}
+
+  ngOnInit(): void {
+    if (this.headerService.getHeaderData) {
+      this.headerService.getHeaderData().subscribe(data => {
+        this.headerData = data;
+      });
+    }
+  }
 }

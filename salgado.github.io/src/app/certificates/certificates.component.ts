@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CertificatesService, Certificate } from '../services/certificates.service';
 
 @Component({
   selector: 'app-certificates',
-  templateUrl: './certificates.component.html',
-  styleUrls: ['./certificates.component.scss']
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './certificates.html', // Coincide con tu archivo src/app/certificates/certificates.html
+  styleUrls: ['./certificates.css']
 })
 export class CertificatesComponent implements OnInit {
   certificates: Certificate[] = [];

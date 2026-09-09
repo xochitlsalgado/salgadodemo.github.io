@@ -1,11 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { InterestsService } from '../services/interests.service';
 
 @Component({
   selector: 'app-interests',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './interests.html',
-  styleUrl: './interests.scss',
+  styleUrls: ['./interests.css']
 })
-export class Interests {
+export class InterestsComponent implements OnInit {
+  interests: any[] = [];
 
+  constructor(private interestsService: InterestsService) {}
+
+  ngOnInit(): void {
+    if (this.interestsService.getInterests) {
+      this.interestsService.getInterests().subscribe(data => {
+        this.interests = data;
+      });
+    }
+  }
 }

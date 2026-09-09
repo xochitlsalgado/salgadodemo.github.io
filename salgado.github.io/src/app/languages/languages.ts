@@ -1,11 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LanguagesService } from '../services/languages.service';
 
 @Component({
   selector: 'app-languages',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './languages.html',
-  styleUrl: './languages.scss',
+  styleUrls: ['./languages.css']
 })
-export class Languages {
+export class LanguagesComponent implements OnInit {
+  languages: any[] = [];
 
+  constructor(private langService: LanguagesService) {}
+
+  ngOnInit(): void {
+    if (this.langService.getLanguages) {
+      this.langService.getLanguages().subscribe(data => {
+        this.languages = data;
+      });
+    }
+  }
 }
