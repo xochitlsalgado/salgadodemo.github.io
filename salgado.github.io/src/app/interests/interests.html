@@ -1,1 +1,18 @@
-<p>interests works!</p>
+<div class="interests-card">
+  <h3>Interests</h3>
+  <ul>
+    <li *ngFor="let interest of interests">
+      <!-- Si el elemento contiene la URL de GitHub o cualquier enlace -->
+      <ng-container *ngIf="interest.name?.includes('https://'); else textoSimple">
+        <a [href]="extraerUrl(interest.name)" target="_blank" rel="noopener noreferrer" class="interest-link">
+          {{ extraerTexto(interest.name) }}
+        </a>
+      </ng-container>
+
+      <!-- Texto normal para los demás intereses -->
+      <ng-template #textoSimple>
+        {{ interest.name || interest }}
+      </ng-template>
+    </li>
+  </ul>
+</div>

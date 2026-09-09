@@ -8,15 +8,22 @@ import { InterestsService } from '../services/interests-service/interests';
   imports: [CommonModule],
   templateUrl: './interests.component.html'
 })
-export class InterestsComponent implements OnInit {
+export class InterestsComponent {
+  // Comprueba si el texto contiene una URL
+  esUrl(texto: string): boolean {
+    return texto ? texto.includes('http://') || texto.includes('https://') : false;
+  }
 
-  interests: any[] = [];
+  // Extrae únicamente la URL del texto
+  obtenerUrl(texto: string): string {
+    if (!texto) return '#';
+    const match = texto.match(/(https?:\/\/[^\s]+)/g);
+    return match ? match[0] : '#';
+  }
 
-  constructor(private intService: InterestsService) {}
-
-  ngOnInit(): void {
-    this.intService.getInterests().subscribe(res => {
-      this.interests = res;
-    });
+  // Muestra el nombre limpio (ej. "certificado python") sin la URL completa
+  obtenerTextoSinUrl(texto: string): string {
+    if (!texto) return '';
+    return texto.replace(/(https?:\/\/[^\s]+)/g, '').trim();
   }
 }

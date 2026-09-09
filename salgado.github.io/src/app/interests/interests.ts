@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { InterestsService } from '../services/interests.service';
+import { CommonModule } from '@angular/common'; // <-- AGREGAR
+import { CertificatesService } from '../services/certificates.service';
+import { Certificate } from '../models/certificate.model';
 
 @Component({
-  selector: 'app-interests',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './interests.html',
-  styleUrls: ['./interests.css']
+  selector: 'app-certificates',
+  standalone: true, // <-- AGREGAR ESTA LÍNEA
+  imports: [CommonModule], // <-- AGREGAR ESTA LÍNEA
+  templateUrl: './certificates.component.html',
+  styleUrls: ['./certificates.component.css']
 })
-export class InterestsComponent implements OnInit {
-  interests: any[] = [];
+export class CertificatesComponent implements OnInit {
+  certificates: Certificate[] = [];
 
-  constructor(private interestsService: InterestsService) {}
+  constructor(private certService: CertificatesService) {}
 
   ngOnInit(): void {
-    if (this.interestsService.getInterests) {
-      this.interestsService.getInterests().subscribe(data => {
-        this.interests = data;
-      });
-    }
+    this.certService.getCertificates().subscribe((data: any) => {
+      this.certificates = data;
+    });
   }
 }
