@@ -1,23 +1,19 @@
-
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CertificatesService } from '../services/certificates-service/certificates';
+import { CertificatesService, Certificate } from '../services/certificates.service';
 
 @Component({
   selector: 'app-certificates',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './certificates.component.html'
+  templateUrl: './certificates.component.html',
+  styleUrls: ['./certificates.component.scss']
 })
 export class CertificatesComponent implements OnInit {
-
-  certificates: any[] = [];
+  certificates: Certificate[] = [];
 
   constructor(private certService: CertificatesService) {}
 
   ngOnInit(): void {
-    this.certService.getCertificates().subscribe(res => {
-      this.certificates = res;
+    this.certService.getCertificates().subscribe(data => {
+      this.certificates = data;
     });
   }
 }
