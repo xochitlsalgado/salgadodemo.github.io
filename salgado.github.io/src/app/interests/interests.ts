@@ -1,23 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // <-- AGREGAR
-import { CertificatesService } from '../services/certificates.service';
-import { Certificate } from '../models/certificate.model';
+import { CommonModule } from '@angular/common';
+import { InterestsService } from '../services/interests.service';
 
 @Component({
-  selector: 'app-certificates',
-  standalone: true, // <-- AGREGAR ESTA LÍNEA
-  imports: [CommonModule], // <-- AGREGAR ESTA LÍNEA
-  templateUrl: './certificates.component.html',
-  styleUrls: ['./certificates.component.css']
+  selector: 'app-interests',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './interests.html',
+  styleUrls: ['./interests.scss']
 })
-export class CertificatesComponent implements OnInit {
-  certificates: Certificate[] = [];
+export class InterestsComponent implements OnInit {
+  interests: any[] = [];
 
-  constructor(private certService: CertificatesService) {}
+  constructor(private interestsService: InterestsService) {}
 
   ngOnInit(): void {
-    this.certService.getCertificates().subscribe((data: any) => {
-      this.certificates = data;
-    });
+    if (this.interestsService.getInterests) {
+      this.interestsService.getInterests().subscribe((data: any) => {
+        this.interests = data;
+      });
+    }
+  }
+
+  // Si solo viene la URL, muestra 'Certificado Python', de lo contrario limpia el texto
+  getText(item: any): string {
+    const str = item?.name || item || '';
+    if (str.startsWith('http://') || str.startsWith('https://')) {
+      return 'Certificado Python';
+    }
+    return str.split('http')[0].trim();
+  }
+
+  // Extrae la URL exacta
+  getUrl(item: any): string {
+    const str = item?.name || item || '';
+    const match = str.match(/(https?:\/\/[^\s]+)/);
+    return match ? match[0] : '#';
   }
 }

@@ -2,15 +2,16 @@
   <h3>Interests</h3>
   <ul>
     <li *ngFor="let interest of interests">
-      <!-- Si el elemento contiene la URL de GitHub o cualquier enlace -->
-      <ng-container *ngIf="interest.name?.includes('https://'); else textoSimple">
-        <a [href]="extraerUrl(interest.name)" target="_blank" rel="noopener noreferrer" class="interest-link">
-          {{ extraerTexto(interest.name) }}
-        </a>
-      </ng-container>
+      <a 
+        *ngIf="getUrl(interest) !== '#'; else textoPlano" 
+        [href]="getUrl(interest)" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        style="color: #2e9ce6; text-decoration: underline; font-weight: bold;">
+        {{ getText(interest) }}
+      </a>
 
-      <!-- Texto normal para los demás intereses -->
-      <ng-template #textoSimple>
+      <ng-template #textoPlano>
         {{ interest.name || interest }}
       </ng-template>
     </li>
