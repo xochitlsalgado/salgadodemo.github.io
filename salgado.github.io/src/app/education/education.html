@@ -1,1 +1,29 @@
-<p>education works!</p>
+<!-- Mantiene tu contenido actual de educación -->
+<div class="card my-3 p-3 shadow-sm rounded-3">
+  <h4 class="fw-bold mb-3">Education</h4>
+  
+  <div *ngFor="let edu of educationList" class="mb-3">
+    <h6 class="fw-bold mb-0">{{ edu.institution || edu.institucion }}</h6>
+    <p class="text-muted small mb-0">{{ edu.degree || edu.carrera }}</p>
+    <small class="text-secondary">{{ edu.year || edu.periodo }}</small>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- SECCIÓN DE CERTIFICADOS INCORPORADA -->
+  <h5 class="fw-bold mb-3">Certificados</h5>
+  
+  <div class="d-flex align-items-center justify-content-between p-2 border rounded-3 bg-light">
+    <div>
+      <h6 class="fw-bold mb-0">Pandas</h6>
+      <small class="text-muted">Kaggle</small>
+    </div>
+    
+    <a href="https://www.kaggle.com/learn/certification/xochitlsalgado/pandas" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="btn btn-primary btn-sm rounded-pill px-3">
+      Ver Certificado
+    </a>
+  </div>
+</div>

@@ -5,7 +5,6 @@ import { EducationComponent } from './education/education';
 import { LanguagesComponent } from './languages/languages';
 import { SkillsComponent } from './skills/skills';
 import { InterestsComponent } from './interests/interests';
-import { CertificatesComponent } from './certificates/certificates';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +15,7 @@ import { CertificatesComponent } from './certificates/certificates';
     EducationComponent,
     LanguagesComponent,
     SkillsComponent,
-    InterestsComponent,
-    CertificatesComponent
+    InterestsComponent
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']

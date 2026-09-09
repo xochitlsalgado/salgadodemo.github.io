@@ -3,19 +3,16 @@
 
   <div *ngIf="certificates && certificates.length > 0; else noCert">
     <div *ngFor="let cert of certificates" class="mb-3 pb-2 border-bottom">
-      <!-- Título -->
       <h6 class="fw-bold mb-1">{{ cert.title }}</h6>
-
-      <!-- Institución -->
+      
       <p class="text-muted small mb-2" *ngIf="cert.institution">
         {{ cert.institution }}
       </p>
 
-      <!-- Botón al certificado -->
-      <a *ngIf="cert.url"
-         [href]="cert.url"
-         target="_blank"
-         rel="noopener noreferrer"
+      <a *ngIf="cert.url" 
+         [href]="cert.url" 
+         target="_blank" 
+         rel="noopener noreferrer" 
          class="btn btn-outline-primary btn-sm rounded-pill w-100">
         Ver Certificado
       </a>
