@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { CertificatesService } from '../services/certificates.service';
 
 @Component({
   selector: 'app-certificates',
-  standalone: false,
-  templateUrl: './certificates.html',
-  styleUrl: './certificates.scss',
+  templateUrl: './certificates.html', // Nombre exacto de tu archivo
+  styleUrls: ['./certificates.scss']   // Nombre exacto de tu archivo
 })
-export class Certificates {
-
+export class CertificatesComponent {
+  // Inyectamos el servicio para traer los datos de Firebase
+  constructor(public certificatesService: CertificatesService) { }
 }

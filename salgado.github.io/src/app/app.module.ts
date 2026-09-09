@@ -7,6 +7,7 @@ import { EducationComponent } from './education/education';
 import { LanguagesComponent } from './languages/languages';
 import { SkillsComponent } from './skills/skills';
 import { CertificatesComponent } from './certificates/certificates';
+import { CertificatesService } from './services/certificates.service';
 import { InterestsComponent } from './interests/interests';
 
 @NgModule({
