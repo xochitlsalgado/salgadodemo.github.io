@@ -6,8 +6,8 @@ import { CertificatesService, Certificate } from '../services/certificates.servi
   selector: 'app-certificates',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './certificates.html', // Coincide con tu archivo src/app/certificates/certificates.html
-  styleUrls: ['./certificates.css']
+  templateUrl: './certificates.component.html', // <-- ASEGÚRATE DE QUE EL NOMBRE SEA EXACTO (ej. ./certificates.component.html o ./certificates.html)
+  styleUrls: []
 })
 export class CertificatesComponent implements OnInit {
   certificates: Certificate[] = [];
@@ -15,7 +15,7 @@ export class CertificatesComponent implements OnInit {
   constructor(private certService: CertificatesService) {}
 
   ngOnInit(): void {
-    this.certService.getCertificates().subscribe(data => {
+    this.certService.getCertificates().subscribe((data: Certificate[]) => {
       this.certificates = data;
     });
   }
