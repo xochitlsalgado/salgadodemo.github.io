@@ -6,7 +6,7 @@ import { CertificatesService, Certificate } from '../services/certificates.servi
   selector: 'app-certificates',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './certificates.component.html', // O ./certificates.html según el nombre exacto de tu archivo
+  templateUrl: './certificates.html', // O ./certificates.html según el nombre exacto de tu archivo
   styleUrls: []
 })
 export class CertificatesComponent implements OnInit {
